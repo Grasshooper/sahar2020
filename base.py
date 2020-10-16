@@ -20,6 +20,15 @@ def index():
         return redirect(url_for('index'))
 
     return render_template('index.html', form=form)
+              @app.route('/', methods=['GET','POST'])
+def tesla():
+    form = SimpleForm()
+    if form.validate_on_submit():
+        session['mootr']= form.breed.data
+        flash(f"The selected breed is : {session['breed']}")
+        return redirect(url_for('index'))
+
+    return render_template('index.html', form=form)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
